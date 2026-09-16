@@ -1,16 +1,17 @@
 const express = require("express");
-const Product = require("./models/Product");
 const productRoutes = require("./routes/productRoutes");
 
 
 const app = express();
+// Read JsON body data
 app.use(express.json());
 
+// Mount the product routes
 app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Backend API is working"
+    message: "Backend API is working 🔥🔥"
   });
 });
 
