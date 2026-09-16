@@ -3,22 +3,26 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
 
   price: {
     type: Number,
-    required: true
+    required: true,
+    min: [0, "Price cannot be negative"]
   },
 
   quantity: {
     type: Number,
-    required: true
+    required: true,
+    min: [0, "Quantity cannot be negative"]
   },
 
   category: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   }
 });
 
