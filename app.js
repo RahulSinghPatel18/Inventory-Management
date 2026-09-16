@@ -1,8 +1,12 @@
 const express = require("express");
+const Product = require("./models/Product");
+const productRoutes = require("./routes/productRoutes");
+
 
 const app = express();
-
 app.use(express.json());
+
+app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.json({
@@ -10,13 +14,5 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/products", (req, res) => {
-  console.log(req.body);
-
-  res.json({
-    message: "Product received",
-    product: req.body
-  });
-});
 
 module.exports = app;
