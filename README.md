@@ -1,70 +1,67 @@
--------------- 1st day practice --------
+# Inventory Management Backend
 
-### Phase 1 — Basic Setup
+## Day 1 — Basic Setup & Product CRUD
 
-1. Node.js project create kiya
-2. `npm init`
-3. Express install kiya
-4. Basic server banaya
-5. `GET /` se server test kiya
+### Setup
+- Node.js project setup
+- `npm init`
+- Express, Mongoose, dotenv install
+- Basic Express server
+- MongoDB Atlas connection
+- `.env` setup
 
-npm install express
-npm install mongoose
-npm install dotenv
-express   → API/server banane ke liye
-mongoose  → MongoDB se baat karne ke liye
-dotenv    → .env variables read karne ke liye
-### Phase 2 — Database
+### Project Structure
+- `server.js`
+- `app.js`
+- `config/db.js`
+- `models/Product.js`
+- `routes/productRoutes.js`
+- `controllers/productController.js`
 
-6. MongoDB Atlas setup
-7. `.env` me MongoDB URL rakha
-8. `dotenv` install/use kiya
-9. Mongoose install kiya
-10. MongoDB connect kiya
+### Product
+- Product Schema/Model
+- Fields: name, price, quantity, category
+- Mongoose validation
 
-### Phase 3 — Product Structure
+### CRUD APIs
+- Create → `POST`
+- Get All → `GET`
+- Get By ID → `GET`
+- Update → `PUT`
+- Delete → `DELETE`
 
-11. `Product` model/schema banaya
-12. Fields define ki:
-
-* name
-* price
-* quantity
-* category
-
-13. Mongoose validation add ki
-
-### Phase 4 — API Structure
-
-14. `routes/` folder banaya
-15. `controllers/` folder banaya
-16. Routes aur controllers separate kiye
-
-### Phase 5 — Product CRUD
-
-17. Create Product → `POST`
-18. Get All → `GET`
-19. Get By ID → `GET`
-20. Update → `PUT`
-21. Delete → `DELETE`
-
-### Phase 6 — Testing
-
-22. Postman se APIs test ki
-23. MongoDB me data verify kiya
-24. Invalid data ki validation test ki
-
-### Phase 7 — Code Safety
-
-25. `.gitignore` banaya
-26. `.env` ko GitHub se protect kiya
-27. GitHub par project push kiya
+### Testing & Git
+- Postman API testing
+- MongoDB data verification
+- Invalid data testing
+- `.gitignore` and `.env` protection
+- GitHub push
 
 ---
 
-### Abhi current position 📍
+## Day 2 — Request Handling & Error Handling
 
-```text
+### Concepts
+- `req.body` → request data
+- `req.params` → URL parameters
+- `req.query` → URL query parameters
+- `async/await` → asynchronous operations
+- `try/catch` → error handling
+- `ObjectId.isValid()` → MongoDB ID validation
+- `400` → invalid request/data
+- `404` → resource not found
+- `runValidators` → update validation
+
+### CRUD Improvements
+- Invalid ID handling
+- Product Not Found handling
+- Update validation
+- Proper error responses
+
+---
+
+## Current Progress
+
 Basic Server       ✅
 MongoDB            ✅
 Mongoose           ✅
@@ -73,32 +70,24 @@ Routes             ✅
 Controllers        ✅
 CRUD               ✅
 Validation         ✅
+Error Handling     ✅
 Postman            ✅
 Git/GitHub         ✅
-```
-                 Client / Postman
-                        │
-                        ↓
-                    server.js
-                        │
-                        ↓
-                     app.js
-                        │
-                        ↓
-               productRoutes.js
-                        │
-                        ↓
-             productController.js
-                        │
-                        ↓
-                  Product.js
-                        │
-                        ↓
-                  Mongoose
-                        │
-                        ↓
-                  MongoDB Atlas
 
+## API Flow
 
-
-                  -------------- 2nd day practice --------
+Client / Postman
+       ↓
+server.js
+       ↓
+app.js
+       ↓
+Routes
+       ↓
+Controllers
+       ↓
+Product Model
+       ↓
+Mongoose
+       ↓
+MongoDB Atlas
