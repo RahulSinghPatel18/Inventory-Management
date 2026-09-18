@@ -23,12 +23,49 @@ const createProduct = async (req, res) => {
 // Get all products
 const getProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    // filter products by category if category query parameter(req.query) is provided
+    const {category, name, sort, page = 1, limit =5} = req.query;
+    const filter = {};
+    if (category){
+      filter.category = category;
+    }
+    if (name){
+      // $regex partial search, $options case-insensitive search
+      filter.name = { $regex: name, $options: "i" }; 
+    }
+// pagination lagayi: --------------
+    const skip = (page -1) * limit;
+
+// Total Products ------------------
+    const totalProducts = await Product.countDocuments(filter);
+    
+// query lgayi: ------------------
+    let query = Product.find(filter).skip(skip).limit(limit);
+
+// Sorting lagayi: ----------------
+    if (sort === "price_asc") {
+      query = query.sort({ price: 1 });
+    }
+
+    if (sort === "price_desc") {
+      query = query.sort({ price: -1 });
+    }
+
+    const products = await query;
+    // Total Pages
+    const totalPages = Math.ceil(totalProducts / limit);
 
     res.json({
       message: "Products fetched successfully",
-      products: products
+      page: Number(page),
+      limit: Number(limit),
+      totalProducts,
+      totalPages,
+      hasNextPage: Number(page) < totalPages,
+      hasPreviousPage: Number(page) > 1,
+      products
     });
+
   } catch (error) {
     res.status(500).json({
       message: "Failed to fetch products",
